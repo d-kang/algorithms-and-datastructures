@@ -1,8 +1,9 @@
 /**
- * @Date:   11.30.2017 12:11pm
- * @Filename: selectionSort.js
- * @Last modified time: 11.30.2017 12:11pm
- */
+* @Author: David Kang
+* @Date:   11.30.2017 12:20pm
+* @Filename: selectionSort.js
+* @Last modified time: 11.30.2017 12:20pm
+*/
 
 // // selection sort
 const selectionSort = (numbers) => {
