@@ -14,10 +14,12 @@ const towersOfHanoi = (towers) => {
     return towers;
   }
   if (start.length === 1) {
-    end.push(towers[0].pop());
+    end.push(start.pop());
   }
   if (start.length === 2) {
-    temp.push(towers[0].pop());
+    temp.push(start.pop());
+    end.push(start.pop())
+    end.push(temp.pop())
   }
   return towers;
 }
