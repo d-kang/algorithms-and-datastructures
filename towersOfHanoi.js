@@ -5,6 +5,10 @@
 * @Last modified time: 12.03.2017 07:22pm
 */
 
+const moveDisc = (arr1, arr2) => {
+  arr2.push(arr1.pop());
+}
+
 const towersOfHanoi = (towers) => {
   const start = towers[0];
   const temp = towers[1];
@@ -14,12 +18,16 @@ const towersOfHanoi = (towers) => {
     return towers;
   }
   if (start.length === 1) {
-    end.push(start.pop());
+    // end.push(start.pop());
+    moveDisc(start, end);
   }
   if (start.length === 2) {
-    temp.push(start.pop());
-    end.push(start.pop())
-    end.push(temp.pop())
+    moveDisc(start, temp);
+    moveDisc(start, end);
+    moveDisc(temp, end);
+    // temp.push(start.pop());
+    // end.push(start.pop())
+    // end.push(temp.pop())
   }
   return towers;
 }
