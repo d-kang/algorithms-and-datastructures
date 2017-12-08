@@ -15,9 +15,9 @@ const arrangeTwoDiscs = (start, temp, end) => {
   moveDisc(temp, end);
 }
 const arrangeThreeDiscs = (start, temp, end) => {
-  moveDisc(start, temp);
+  arrangeTwoDiscs(start, end, temp)
   moveDisc(start, end);
-  moveDisc(temp, end);
+  arrangeTwoDiscs(start, temp, end)
 }
 
 const towersOfHanoi = (towers) => {
@@ -33,9 +33,6 @@ const towersOfHanoi = (towers) => {
   }
   if (start.length === 2) {
     arrangeTwoDiscs(start, temp, end);
-    // moveDisc(start, temp);
-    // moveDisc(start, end);
-    // moveDisc(temp, end);
   }
   if (start.length === 3) {
     moveDisc(start, end);
@@ -44,9 +41,6 @@ const towersOfHanoi = (towers) => {
     moveDisc(start, end);
     /* 2 discs, rotate start temp end and recurse? */
     arrangeTwoDiscs(temp, start, end)
-    // moveDisc(temp, start);
-    // moveDisc(temp, end);
-    // moveDisc(start, end);
   }
   if (start.length === 4) {
     moveDisc(start, temp);
@@ -56,8 +50,19 @@ const towersOfHanoi = (towers) => {
     moveDisc(start, temp);
     /* place 2 discs */
     arrangeTwoDiscs(end, start, temp)
+    moveDisc(start, end);
+    arrangeThreeDiscs(temp, start, end)
 
   }
+  let num = towers[0].length
+  const isEven = num % 2 === 0
+  /* if discs are odd */
+  if (isEven) {
+
+  } else {
+
+  }
+
   return towers;
 }
 
