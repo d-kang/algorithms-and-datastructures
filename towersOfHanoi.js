@@ -17,7 +17,7 @@ const arrangeTwoDiscs = (start, temp, end) => {
 const arrangeThreeDiscs = (start, temp, end) => {
   arrangeTwoDiscs(start, end, temp)
   moveDisc(start, end);
-  arrangeTwoDiscs(start, temp, end)
+  arrangeTwoDiscs(temp, start, end)
 }
 
 const towersOfHanoi = (towers) => {
