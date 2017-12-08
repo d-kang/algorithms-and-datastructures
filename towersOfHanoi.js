@@ -14,6 +14,11 @@ const arrangeTwoDiscs = (start, temp, end) => {
   moveDisc(start, end);
   moveDisc(temp, end);
 }
+const arrangeThreeDiscs = (start, temp, end) => {
+  moveDisc(start, temp);
+  moveDisc(start, end);
+  moveDisc(temp, end);
+}
 
 const towersOfHanoi = (towers) => {
   const start = towers[0];
@@ -27,9 +32,10 @@ const towersOfHanoi = (towers) => {
     moveDisc(start, end);
   }
   if (start.length === 2) {
-    moveDisc(start, temp);
-    moveDisc(start, end);
-    moveDisc(temp, end);
+    arrangeTwoDiscs(start, temp, end);
+    // moveDisc(start, temp);
+    // moveDisc(start, end);
+    // moveDisc(temp, end);
   }
   if (start.length === 3) {
     moveDisc(start, end);
@@ -37,9 +43,10 @@ const towersOfHanoi = (towers) => {
     moveDisc(end, temp);
     moveDisc(start, end);
     /* 2 discs, rotate start temp end and recurse? */
-    moveDisc(temp, start);
-    moveDisc(temp, end);
-    moveDisc(start, end);
+    arrangeTwoDiscs(temp, start, end)
+    // moveDisc(temp, start);
+    // moveDisc(temp, end);
+    // moveDisc(start, end);
   }
   if (start.length === 4) {
     moveDisc(start, temp);
