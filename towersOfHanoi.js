@@ -9,6 +9,12 @@ const moveDisc = (arr1, arr2) => {
   arr2.push(arr1.pop());
 }
 
+const arrangeTwoDiscs = (start, temp, end) => {
+  moveDisc(start, temp);
+  moveDisc(start, end);
+  moveDisc(temp, end);
+}
+
 const towersOfHanoi = (towers) => {
   const start = towers[0];
   const temp = towers[1];
@@ -34,6 +40,16 @@ const towersOfHanoi = (towers) => {
     moveDisc(temp, start);
     moveDisc(temp, end);
     moveDisc(start, end);
+  }
+  if (start.length === 4) {
+    moveDisc(start, temp);
+    moveDisc(start, end);
+    moveDisc(temp, end);
+    /* place disc 3 */
+    moveDisc(start, temp);
+    /* place 2 discs */
+    arrangeTwoDiscs(end, start, temp)
+
   }
   return towers;
 }
@@ -99,3 +115,18 @@ const towersOfHanoi = (towers) => {
   console.log('actual>>>', actual);
   console.log('expected>>>', expected);
 })(3);
+
+
+(function(numberOfDiscs) {
+  console.log('-------------------------------')
+  console.log('numberOfDiscs', numberOfDiscs);
+  const input = [[4, 3, 2, 1],[],[]];
+  const expected = [[], [], [4, 3, 2, 1]];
+  const actual = towersOfHanoi(input);
+  const sInput = JSON.stringify(input);
+  const sExpected = JSON.stringify(expected);
+  const sActual = JSON.stringify(actual);
+  console.log(`${sInput}>>>`, sExpected === sActual)
+  console.log('actual>>>', actual);
+  console.log('expected>>>', expected);
+})(4);
