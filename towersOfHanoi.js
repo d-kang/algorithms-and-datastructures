@@ -18,16 +18,12 @@ const towersOfHanoi = (towers) => {
     return towers;
   }
   if (start.length === 1) {
-    // end.push(start.pop());
     moveDisc(start, end);
   }
   if (start.length === 2) {
     moveDisc(start, temp);
     moveDisc(start, end);
     moveDisc(temp, end);
-    // temp.push(start.pop());
-    // end.push(start.pop())
-    // end.push(temp.pop())
   }
   return towers;
 }
