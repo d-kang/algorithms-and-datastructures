@@ -35,12 +35,13 @@ const towersOfHanoi = (towers) => {
     arrangeTwoDiscs(start, temp, end);
   }
   if (start.length === 3) {
-    moveDisc(start, end);
-    moveDisc(start, temp);
-    moveDisc(end, temp);
-    moveDisc(start, end);
-    /* 2 discs, rotate start temp end and recurse? */
-    arrangeTwoDiscs(temp, start, end)
+    arrangeThreeDiscs(start, temp, end)
+    // moveDisc(start, end);
+    // moveDisc(start, temp);
+    // moveDisc(end, temp);
+    // moveDisc(start, end);
+    // /* 2 discs, rotate start temp end and recurse? */
+    // arrangeTwoDiscs(temp, start, end)
   }
   if (start.length === 4) {
     moveDisc(start, temp);
