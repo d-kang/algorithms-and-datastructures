@@ -21,44 +21,35 @@ const arrangeThreeDiscs = (start, temp, end) => {
 }
 
 const towersOfHanoi = (towers) => {
-  const start = towers[0];
-  const temp = towers[1];
-  const end = towers[2];
+  const A = towers[0];
+  const B = towers[1];
+  const C = towers[2];
+  const numOfDiscs = towers[0].length;
+  const isEven = numOfDiscs % 2 === 0;
 
-  if (start.length === 0) {
+  if (numOfDiscs === 0) {
     return towers;
   }
-  if (start.length === 1) {
-    moveDisc(start, end);
+  if (numOfDiscs === 1) {
+    moveDisc(A, C);
   }
-  if (start.length === 2) {
-    arrangeTwoDiscs(start, temp, end);
+  if (numOfDiscs === 2) {
+    arrangeTwoDiscs(A, B, C);
   }
-  if (start.length === 3) {
-    arrangeThreeDiscs(start, temp, end)
+  if (numOfDiscs === 3) {
+    arrangeThreeDiscs(A, B, C)
   }
-  if (start.length === 4) {
-    arrangeTwoDiscs(start, temp, end);
-    moveDisc(start, temp);
-    arrangeTwoDiscs(end, start, temp);
-    moveDisc(start, end);
-    arrangeThreeDiscs(temp, start, end);
+  if (numOfDiscs === 4) {
+    arrangeTwoDiscs(A, B, C);
+    moveDisc(A, B);
+    arrangeTwoDiscs(C, A, B);
+    moveDisc(A, C);
+    arrangeThreeDiscs(B, A, C);
+  }
 
-    // moveDisc(start, temp);
-    // moveDisc(start, end);
-    // moveDisc(temp, end);
-    // /* place disc 3 */
-    // moveDisc(start, temp);
-    // /* place 2 discs */
-    // arrangeTwoDiscs(end, start, temp)
-    // moveDisc(start, end);
-    // arrangeThreeDiscs(temp, start, end)
 
-  }
-  let num = towers[0].length
-  const isEven = num % 2 === 0
   /* if discs are odd */
-  if (isEven) {
+  if (numOfDiscs) {
 
   } else {
 
