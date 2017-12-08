@@ -38,15 +38,21 @@ const towersOfHanoi = (towers) => {
     arrangeThreeDiscs(start, temp, end)
   }
   if (start.length === 4) {
+    arrangeTwoDiscs(start, temp, end);
     moveDisc(start, temp);
+    arrangeTwoDiscs(end, start, temp);
     moveDisc(start, end);
-    moveDisc(temp, end);
-    /* place disc 3 */
-    moveDisc(start, temp);
-    /* place 2 discs */
-    arrangeTwoDiscs(end, start, temp)
-    moveDisc(start, end);
-    arrangeThreeDiscs(temp, start, end)
+    arrangeThreeDiscs(temp, start, end);
+
+    // moveDisc(start, temp);
+    // moveDisc(start, end);
+    // moveDisc(temp, end);
+    // /* place disc 3 */
+    // moveDisc(start, temp);
+    // /* place 2 discs */
+    // arrangeTwoDiscs(end, start, temp)
+    // moveDisc(start, end);
+    // arrangeThreeDiscs(temp, start, end)
 
   }
   let num = towers[0].length
