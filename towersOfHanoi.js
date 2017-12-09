@@ -46,7 +46,9 @@ const towersOfHanoi = (towers) => {
     moveDisc(A, C);
     arrangeThreeDiscs(B, A, C);
   }
+  if (numOfDiscs === 5) {
 
+  }
 
   /* if discs are odd */
   if (numOfDiscs) {
@@ -134,3 +136,69 @@ const towersOfHanoi = (towers) => {
   console.log('actual>>>', actual);
   console.log('expected>>>', expected);
 })(4);
+
+console.log('-------------------------------')
+console.log('-------------------------------')
+
+
+
+// const towersOfHanoi = (n) => {
+  // intialize start, temp, end stacks
+  // range start stack from n - 1 >>> [n, ..., 3, 2, 1]
+
+  // peak will check last item in stack
+
+// }
+
+
+const Tower = function() {
+  this.top = -1; // push will add one to top
+  this.stack = [];
+}
+
+Tower.prototype.push = function(val) {
+
+  if (this.stack[this.top] < val) {
+    throw new Error('ERROR pushed value must be less than top of stack')
+  }
+  this.top++;
+  this.stack[this.top] = val;
+
+  return this // return tower
+}
+Tower.prototype.pop = function() {
+  this.top--;
+  return this.stack.pop();
+}
+Tower.prototype.peak = function() {
+  return this.stack[this.top];
+}
+Tower.prototype.size = function() {
+  return this.stack.length
+}
+
+const tower = new Tower()
+tower.push(5)
+tower.push(4)
+tower.push(3)
+// tower.pop();
+console.log('tower', tower)
+console.log('tower.stack', JSON.stringify(tower.stack));
+console.log('peak', tower.peak());
+
+// class Tower {
+//   constructor() {
+//     this.top = -1;
+//     this.stack = [];
+//   }
+//   push(val) {
+//     if (this.stack[this.top] < val) {
+//       throw new Error('ERROR pushed value must be less than top of stack')
+//     }
+//     this.top++;
+//     this.stack[this.top] = val;
+//
+//     return this // return tower
+//   }
+//   pop() {}
+// }
