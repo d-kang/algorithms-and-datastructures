@@ -203,7 +203,13 @@ const moveDonut = function(start, end) {
   end.push(start.pop());
 };
 
-const move3discs = function(start, temp, end) {
+const move2discs = function(start, temp, end) {
+  moveDonut(start, temp);
+  moveDonut(start, end);
+  moveDonut(temp, end);
+}
+
+const move3Discs = function(start, temp, end) {
   moveDonut(start, end);
   moveDonut(start, temp);
   moveDonut(end, temp);
@@ -213,6 +219,8 @@ const move3discs = function(start, temp, end) {
   moveDonut(start, end)
 }
 
+// by looking at all three know what move needs to made that round and recurse
+// repeatable pattern between odds .... and between evens?
 const moveDonuts = function(start, temp, end) {
   // do the thing
   // n = 1
@@ -233,16 +241,63 @@ const moveDonuts = function(start, temp, end) {
   // moveDonut(start, end)
 
   // n = 4
-  moveDonut(start, temp);
-  moveDonut(start, end);
-  moveDonut(temp, end);
-  moveDonut(start, temp);
-  moveDonut(end, start);
-  moveDonut(end, temp);
-  moveDonut(start, temp);
-  moveDonut(start, end);
-  // move 3 discs from temp to end
-  move3discs(temp, start, end);
+  // moveDonut(start, temp);
+  // moveDonut(start, end);
+  // moveDonut(temp, end);
+  // moveDonut(start, temp);
+  // moveDonut(temp, start);
+  // moveDonut(start, temp);
+  // moveDonut(end, start);
+  // moveDonut(end, temp);
+  // moveDonut(start, temp);
+  // moveDonut(start, end);
+  // // move 3 discs from temp to end
+  // move3Discs(temp, start, end);
+
+  // n = 5
+  // moveDonut(start, end);
+  // moveDonut(start, temp);
+  // moveDonut(end, temp);
+  // moveDonut(start, end);
+  // moveDonut(temp, start);
+  // moveDonut(temp, end);
+  // moveDonut(start, end);
+  // // disc 4 placed on temp
+  // moveDonut(start, temp) // last move or a first move
+  // moveDonut(end, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, start)
+  // moveDonut(end, temp)
+  // moveDonut(start, end)
+  // moveDonut(start, temp)
+  // moveDonut(end, temp)
+  // // disc 5 placed on end
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(end, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, start)
+  // // place disc 4 from temp to end
+  // moveDonut(temp, end)
+  // moveDonut(start, end) // 3 disc from start to end
+  // moveDonut(start, temp)
+  // moveDonut(end, temp)
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, end)
+
+  // alt n = 5
+  move3Discs(start, temp, end) // move 3 discs to end
+  moveDisc(start, temp) // place next largest disc (4) at temp
+  move3Discs(end, start, temp) // move 3 discs to temp
+  moveDisc(start, end) // place next largest disc (5) at end
+  move3Discs(temp, end, start) // move 3 discs to start
+  moveDisc(temp, end) // move disc (4) to end
+  move3Discs(start, temp, end)
 }
 
 const Towers = function(n) {
@@ -285,8 +340,15 @@ const Towers = function(n) {
 //   console.log(JSON.stringify(hanoi) === '[[],[],[3,2,1]]');
 // })(3);
 
+// (function(n) {
+//   const hanoi = Towers(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
+// })(4);
+
+
 (function(n) {
   const hanoi = Towers(n);
   console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
-})(4);
+  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
+})(5);
