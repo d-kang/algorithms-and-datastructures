@@ -290,14 +290,105 @@ const moveDonuts = function(start, temp, end) {
   // moveDonut(temp, end)
   // moveDonut(start, end)
 
-  // alt n = 5
-  move3Discs(start, temp, end) // move 3 discs to end
-  moveDisc(start, temp) // place next largest disc (4) at temp
-  move3Discs(end, start, temp) // move 3 discs to temp
-  moveDisc(start, end) // place next largest disc (5) at end
-  move3Discs(temp, end, start) // move 3 discs to start
-  moveDisc(temp, end) // move disc (4) to end
-  move3Discs(start, temp, end)
+  // // alt n = 5
+  // move3Discs(start, temp, end) // move 3 discs to end
+  // moveDisc(start, temp) // place next largest disc (4) at temp
+  // move3Discs(end, start, temp) // move 3 discs to temp
+  // moveDisc(start, end) // place next largest disc (5) at end
+  // move3Discs(temp, end, start) // move 3 discs to start
+  // moveDisc(temp, end) // move disc (4) to end
+  // move3Discs(start, temp, end)
+
+
+
+  // n = 6
+  moveDonut(start, temp)
+  moveDonut(start, end)
+  moveDonut(temp, end)
+  moveDonut(start, temp)
+  moveDonut(end, start)
+  moveDonut(end, temp)
+  moveDonut(start, temp)
+  //move (4)
+  moveDonut(start, end)
+  // repeat move three
+  moveDonut(temp, end)
+  moveDonut(temp, start)
+  moveDonut(end, start)
+  moveDonut(temp, end)
+  moveDonut(start, temp)
+  moveDonut(start, end)
+  moveDonut(temp, end)
+  //move (5)
+  moveDonut(start, temp)
+  // repeat move four
+  /*ATTEMPT TO SWITCH VARIABLEs*/
+  //Start > temp > end
+  //End > start > temp
+  moveDonut(end, start)
+  moveDonut(end, temp)
+  moveDonut(start, temp)
+  moveDonut(end, start)
+  moveDonut(temp, end)
+  moveDonut(temp, start)
+  moveDonut(end, start)
+  //move (4)
+  moveDonut(end, temp)
+  // repeat move three
+  moveDonut(start, temp)
+  moveDonut(start, end)
+  moveDonut(temp, end)
+  moveDonut(start, temp)
+  moveDonut(end, start)
+  moveDonut(end, temp)
+  moveDonut(start, temp)
+  // Move (6) *************
+  moveDonut(start, end)
+  //start > temp > end
+  //temp > start > end
+  moveDonut(temp, start)
+  moveDonut(temp, end)
+  moveDonut(start, end)
+  moveDonut(temp, start)
+  moveDonut(end, temp)
+  moveDonut(end, start)
+  moveDonut(temp, start)
+  //move (4)
+  moveDonut(temp, end)
+  // repeat move three
+  moveDonut(start, end)
+  moveDonut(start, temp)
+  moveDonut(end, temp)
+  moveDonut(start, end)
+  moveDonut(temp, start)
+  moveDonut(temp, end)
+  moveDonut(start, end)
+  //move (5
+  moveDonut(temp, temp)
+  // repeat move four
+  //ATTEMPT TO SWITCH VARIABLEs
+  //Start > temp > end
+  //End > start > temp
+  moveDonut(end, temp)
+  moveDonut(end, start)
+  moveDonut(temp, start)
+  moveDonut(end, temp)
+  moveDonut(start, end)
+  moveDonut(start, temp)
+  moveDonut(end, temp)
+  //move (4)
+  moveDonut(end, start)
+  // repeat move three
+  moveDonut(temp, start)
+  moveDonut(temp, end)
+  moveDonut(start, end)
+  moveDonut(temp, start)
+  moveDonut(end, temp)
+  moveDonut(end, start)
+  moveDonut(temp, start)
+
+  moveDonut(temp, end)
+
 }
 
 const Towers = function(n) {
@@ -347,8 +438,15 @@ const Towers = function(n) {
 // })(4);
 
 
+// (function(n) {
+//   const hanoi = Towers(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
+// })(5);
+
+
 (function(n) {
   const hanoi = Towers(n);
   console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
-})(5);
+  console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
+})(6);
