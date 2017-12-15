@@ -182,10 +182,8 @@ Tower.prototype.push = function(val) {
 
 // pop
 Tower.prototype.pop = function() {
-  console.log('this.top', this.top)
   this.top--;
   return this.stack.pop();
-
 }
 
 // peek
@@ -217,6 +215,58 @@ const move3Discs = function(start, temp, end) {
   moveDonut(temp, start);
   moveDonut(temp, end)
   moveDonut(start, end)
+}
+
+const towers = function(n) {
+  const A = new Tower(n); //[3, 2, 1]
+  const B = new Tower();
+  const C = new Tower();
+
+  // moveDonuts(A, B, C);
+  return [A, B, C];
+
+  // find which tower is the start - use peek();
+  // which is the end?
+  // the one with the next smallest is the end,
+  // but if they are both empty then C is end by default
+
+  // check if tower A is either odd - use size();
+    // moveDonuts()
+
+  // check if tower A is either even - use size();
+    // moveDonuts()
+};
+
+
+const solver = function(n) {
+  const hanoi = towers(n);
+  const [ A, B, C ] = hanoi;
+  // console.log('hanoi', hanoi);
+  // console.log([A.stack, B.stack, C.stack])
+  let [start, temp, end] = hanoi
+
+  if (n % 2 === 0) {
+    temp = C
+    end = B
+  }
+
+  move3Discs(start, temp, end);
+  moveDonut(start, temp)
+  // [ [ 5 ], [ 4 ], [ 3, 2, 1 ] ]
+  let tempEnd = end;
+  var tempTemp = temp
+  var tempStart = start;
+
+  start = tempEnd;
+  temp = tempStart;
+  end = tempTemp;
+  move3Discs(start, temp, end);
+
+  moveDonut(temp, start)
+
+  // the one move disc will go from start to temp
+
+  return [A.stack, B.stack, C.stack]
 }
 
 // by looking at all three know what move needs to made that round and recurse
@@ -253,6 +303,10 @@ const moveDonuts = function(start, temp, end) {
   // moveDonut(start, end);
   // // move 3 discs from temp to end
   // move3Discs(temp, start, end);
+  // alt 4 discs
+  // move3Discs(start, end, temp)
+  // moveDonut(start, end)
+  // move3Discs(temp, start, end)
 
   // n = 5
   // moveDonut(start, end);
@@ -301,115 +355,104 @@ const moveDonuts = function(start, temp, end) {
 
 
 
-  // n = 6
-  moveDonut(start, temp)
-  moveDonut(start, end)
-  moveDonut(temp, end)
-  moveDonut(start, temp)
-  moveDonut(end, start)
-  moveDonut(end, temp)
-  moveDonut(start, temp)
-  //move (4)
-  moveDonut(start, end)
-  // repeat move three
-  moveDonut(temp, end)
-  moveDonut(temp, start)
-  moveDonut(end, start)
-  moveDonut(temp, end)
-  moveDonut(start, temp)
-  moveDonut(start, end)
-  moveDonut(temp, end)
-  //move (5)
-  moveDonut(start, temp)
-  // repeat move four
-  /*ATTEMPT TO SWITCH VARIABLEs*/
-  //Start > temp > end
-  //End > start > temp
-  moveDonut(end, start)
-  moveDonut(end, temp)
-  moveDonut(start, temp)
-  moveDonut(end, start)
-  moveDonut(temp, end)
-  moveDonut(temp, start)
-  moveDonut(end, start)
-  //move (4)
-  moveDonut(end, temp)
-  // repeat move three
-  moveDonut(start, temp)
-  moveDonut(start, end)
-  moveDonut(temp, end)
-  moveDonut(start, temp)
-  moveDonut(end, start)
-  moveDonut(end, temp)
-  moveDonut(start, temp)
-  // Move (6) *************
-  moveDonut(start, end)
-  //start > temp > end
-  //temp > start > end
-  moveDonut(temp, start)
-  moveDonut(temp, end)
-  moveDonut(start, end)
-  moveDonut(temp, start)
-  moveDonut(end, temp)
-  moveDonut(end, start)
-  moveDonut(temp, start)
-  //move (4)
-  moveDonut(temp, end)
-  // repeat move three
-  moveDonut(start, end)
-  moveDonut(start, temp)
-  moveDonut(end, temp)
-  moveDonut(start, end)
-  moveDonut(temp, start)
-  moveDonut(temp, end)
-  moveDonut(start, end)
-  //move (5
-  moveDonut(temp, temp)
-  // repeat move four
-  //ATTEMPT TO SWITCH VARIABLEs
-  //Start > temp > end
-  //End > start > temp
-  moveDonut(end, temp)
-  moveDonut(end, start)
-  moveDonut(temp, start)
-  moveDonut(end, temp)
-  moveDonut(start, end)
-  moveDonut(start, temp)
-  moveDonut(end, temp)
-  //move (4)
-  moveDonut(end, start)
-  // repeat move three
-  moveDonut(temp, start)
-  moveDonut(temp, end)
-  moveDonut(start, end)
-  moveDonut(temp, start)
-  moveDonut(end, temp)
-  moveDonut(end, start)
-  moveDonut(temp, start)
+  // // n = 6
+  // moveDonut(start, temp)
+  // moveDonut(start, end)
+  // moveDonut(temp, end)
+  // moveDonut(start, temp)
+  // moveDonut(end, start)
+  // moveDonut(end, temp)
+  // moveDonut(start, temp)
+  // //move (4)
+  // moveDonut(start, end)
+  // // repeat move three
+  // moveDonut(temp, end)
+  // moveDonut(temp, start)
+  // moveDonut(end, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, temp)
+  // moveDonut(start, end)
+  // moveDonut(temp, end)
+  // //move (5)
+  // moveDonut(start, temp)
+  // // repeat move four
+  // /*ATTEMPT TO SWITCH VARIABLEs*/
+  // //Start > temp > end
+  // //End > start > temp
+  // moveDonut(end, start)
+  // moveDonut(end, temp)
+  // moveDonut(start, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, end)
+  // moveDonut(temp, start)
+  // moveDonut(end, start)
+  // //move (4)
+  // moveDonut(end, temp)
+  // // repeat move three
+  // moveDonut(start, temp)
+  // moveDonut(start, end)
+  // moveDonut(temp, end)
+  // moveDonut(start, temp)
+  // moveDonut(end, start)
+  // moveDonut(end, temp)
+  // moveDonut(start, temp)
+  // // Move (6) *************
+  // moveDonut(start, end)
+  // //start > temp > end
+  // //temp > start > end
+  // moveDonut(temp, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(end, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, start)
+  // //move (4)
+  // moveDonut(temp, end)
+  // // repeat move three
+  // moveDonut(start, end)
+  // moveDonut(start, temp)
+  // moveDonut(end, temp)
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, end)
+  // //move (5
+  // moveDonut(temp, temp)
+  // // repeat move four
+  // //ATTEMPT TO SWITCH VARIABLEs
+  // //Start > temp > end
+  // //End > start > temp
+  // moveDonut(end, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, start)
+  // moveDonut(end, temp)
+  // moveDonut(start, end)
+  // moveDonut(start, temp)
+  // moveDonut(end, temp)
+  // //move (4)
+  // moveDonut(end, start)
+  // // repeat move three
+  // moveDonut(temp, start)
+  // moveDonut(temp, end)
+  // moveDonut(start, end)
+  // moveDonut(temp, start)
+  // moveDonut(end, temp)
+  // moveDonut(end, start)
+  // moveDonut(temp, start)
+  //
+  // moveDonut(temp, end)
+  //
+  // move3Discs(start, end, temp)
+  // moveDonut(start, end)
+  // move3Discs(temp, start, end)
 
-  moveDonut(temp, end)
 
-}
-
-const Towers = function(n) {
-  const A = new Tower(n); //[3, 2, 1]
-  const B = new Tower();
-  const C = new Tower();
-
-  moveDonuts(A, B, C);
-  return [A.stack, B.stack, C.stack];
-
-  // find which tower is the start - use peek();
-  // which is the end?
-  // the one with the next smallest is the end,
-  // but if they are both empty then C is end by default
-
-  // check if tower A is either odd - use size();
-    // moveDonuts()
-
-  // check if tower A is either even - use size();
-    // moveDonuts()
 };
+
+
+
+
 
 // var hi = 'hello'
 
@@ -445,8 +488,21 @@ const Towers = function(n) {
 // })(5);
 
 
+// (function(n) {
+//   const hanoi = Towers(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
+// })(6);
 (function(n) {
-  const hanoi = Towers(n);
+  console.log('============================================')
+  console.log('============================================')
+  const hanoi = solver(n);
+  console.log(`${n} towers`, hanoi);
+  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
+})(5);
+(function(n) {
+  console.log('============================================')
+  const hanoi = solver(n);
   console.log(`${n} towers`, hanoi);
   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
 })(6);
