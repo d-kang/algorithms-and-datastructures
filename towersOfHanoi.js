@@ -253,10 +253,11 @@ const solver = function(n) {
   move3Discs(start, temp, end);
   moveDonut(start, temp)
   // [ [ 5 ], [ 4 ], [ 3, 2, 1 ] ]
-  let tempEnd = end;
-  var tempTemp = temp
-  var tempStart = start;
+  let tempStart, tempTemp, tempEnd;
 
+  tempStart = start
+  tempTemp = temp
+  tempEnd = end
   start = tempEnd;
   temp = tempStart;
   end = tempTemp;
@@ -264,7 +265,35 @@ const solver = function(n) {
 
   moveDonut(temp, start)
 
+  tempStart = start
+  tempTemp = temp
+  tempEnd = end
+  start = tempEnd
+  temp = tempStart
+  end = tempTemp
+  move3Discs(start, temp, end);
   // the one move disc will go from start to temp
+  moveDonut(start, temp)
+
+  tempStart = start
+  tempTemp = temp
+  tempEnd = end
+  start = tempEnd
+  temp = tempStart
+  end = tempTemp
+  move3Discs(start, temp, end);
+
+
+
+  moveDonut(start, temp)
+  const stopTime = Date.now() + 5000;
+  while(Date.now() < stopTime) {
+
+    if (A.stack.length === 0 && B.stack.length === 0) {
+      return [A.stack, B.stack, C.stack]
+    }
+
+  }
 
   return [A.stack, B.stack, C.stack]
 }
