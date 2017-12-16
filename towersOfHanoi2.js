@@ -5,19 +5,29 @@
 * @Last modified time: 12.03.2017 07:22pm
 */
 
-const moveDisc = function(stack_A, stack_B) {
-  stack_B.push(stack_A.pop());
+const moveDisc = function(A, B) {
+  B.push(A.pop());
 }
 
-const arrange2 = function(stack_A, stack_B, stack_C) {
-  moveDisc(stack_A, stack_B)
-  moveDisc(stack_A, stack_C)
-  moveDisc(stack_B, stack_C)
+const arrange2 = function(A, B, C) {
+  moveDisc(A, B)
+  moveDisc(A, C)
+  moveDisc(B, C)
 }
-const arrange3 = function(stack_A, stack_B, stack_C) {
-  arrange2(stack_A, stack_C, stack_B)
-  moveDisc(stack_A, stack_C)
-  arrange2(stack_B, stack_A, stack_C)
+const arrange3 = function(A, B, C) {
+  arrange2(A, C, B)
+  moveDisc(A, C)
+  arrange2(B, A, C)
+}
+const arrange4 = function(A, B, C) {
+  arrange3(A, C, B)
+  moveDisc(A, C)
+  arrange3(B, A, C)
+}
+const arrange5 = function(A, B, C) {
+  arrange4(A, C, B)
+  moveDisc(A, C)
+  arrange4(B, A, C)
 }
 
 const towers = function(n, stacks) {
@@ -32,7 +42,12 @@ const towers = function(n, stacks) {
     arrange2(A, B, C);
   } else if (n === 3) {
     arrange3(A, B, C)
+  } else if (n === 4) {
+    arrange4(A, B, C)
+  } else if (n === 5) {
+    arrange5(A, B, C)
   }
+
 
 
 
@@ -75,3 +90,19 @@ const towers = function(n, stacks) {
   console.log(`${n} towers`, hanoi);
   console.log(JSON.stringify(hanoi) === '[[],[],[3,2,1]]');
 })(3);
+(function(n) {
+  console.log('===========================')
+  console.log('===========================')
+  const stacks = [[4,3,2,1],[],[]]
+  const hanoi = towers(n, stacks)
+  console.log(`${n} towers`, hanoi);
+  console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
+})(4);
+(function(n) {
+  console.log('===========================')
+  console.log('===========================')
+  const stacks = [[5,4,3,2,1],[],[]]
+  const hanoi = towers(n, stacks)
+  console.log(`${n} towers`, hanoi);
+  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
+})(5);
