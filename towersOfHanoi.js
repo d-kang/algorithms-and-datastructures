@@ -117,138 +117,103 @@ const solver = function(n) {
   }
 
 
-
+  let tempStart, tempTemp, tempEnd;
+  let count = 0;
   move3Discs(start, temp, end);
 
+  /* sub */
   const sub = function() {
-    moveDisc(start, temp)
-    if (A.stack.length === 0 && B.stack.length === 0) {
-      return
-    }
-    let tempStart, tempTemp, tempEnd;
-
     tempStart = start
     tempTemp = temp
     tempEnd = end
     start = tempEnd;
     temp = tempStart;
     end = tempTemp;
+
+    if (count === 3 || count % 2 === 0) {
+      moveDisc(temp, end)
+    } else if (count % 2 === 1) {
+      moveDisc(end, temp)
+    }
+    count++
     move3Discs(start, temp, end);
-    //
-    if (A.stack.length !== 0 && B.stack.length !== 0) {
-      moveDisc(temp, start)
-        tempStart = start
-        tempTemp = temp
-        tempEnd = end
-        start = tempEnd
-        temp = tempStart
-        end = tempTemp
-        move3Discs(start, temp, end);
-        sub()
+
+    if (A.stack.length === 0 && B.stack.length === 0) {
+      return
+    } else {
+       sub();
     }
 
+    console.log('ABC>>>', [A.stack, B.stack, C.stack]);
+    console.log('ste>>>', [start.stack, temp.stack, end.stack]);
+    // (3) 6 towers [ [ 6 ], [ 5, 4, 3, 2, 1 ], [] ]
+    // (4) 6 towers [ [ 6, undefined ], [ 5, 4 ], [ 3, 2, 1 ] ]
+    // if (count < 7) {
+    //   sub();
+    // }
+
   }
-
   sub();
-
-  // const stopTime = Date.now() + 10000;
-  // while(Date.now() < stopTime) {
-  //   tempStart = start
-  //   tempTemp = temp
-  //   tempEnd = end
-  //   start = tempEnd;
-  //   temp = tempStart;
-  //   end = tempTemp;
-  //   move3Discs(start, temp, end);
-  //   if (A.stack.length === 0 && B.stack.length === 0) {
-  //     return [A.stack, B.stack, C.stack]
-  //   }
-  //   moveDisc(temp, start)
-  //
-  //   tempStart = start
-  //   tempTemp = temp
-  //   tempEnd = end
-  //   start = tempEnd
-  //   temp = tempStart
-  //   end = tempTemp
-  //   move3Discs(start, temp, end);
-  //   if (A.stack.length === 0 && B.stack.length === 0) {
-  //     return [A.stack, B.stack, C.stack]
-  //   }
-  //   // the one move disc will go from start to temp
-  //   moveDisc(start, temp)
-  // }
 
   return [A.stack, B.stack, C.stack]
 };
 
-(function(n) {
-  console.log('============================================')
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[]]');
-})(-1);
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[]]');
-})(0);
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[1]]');
-})(1);
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[2,1]]');
-})(2);
-
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[3,2,1]]');
-})(3);
-
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
-})(4);
-
-
-(function(n) {
-  console.log('============================================')
-  const hanoi = solver(n);
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
-})(5);
-
+// (function(n) {
+//   console.log('============================================')
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[]]');
+// })(-1);
+// (function(n) {
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[]]');
+// })(0);
+// (function(n) {
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[1]]');
+// })(1);
+// (function(n) {
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[2,1]]');
+// })(2);
+//
+// (function(n) {
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[3,2,1]]');
+// })(3);
 
 // (function(n) {
 //   console.log('============================================')
 //   const hanoi = solver(n);
 //   console.log(`${n} towers`, hanoi);
-//   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
-// })(6);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
+// })(4);
+//
+//
 // (function(n) {
 //   console.log('============================================')
 //   const hanoi = solver(n);
 //   console.log(`${n} towers`, hanoi);
 //   console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
 // })(5);
-// (function(n) {
-//   console.log('============================================')
-//   const hanoi = solver(n);
-//   console.log(`${n} towers`, hanoi);
-//   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
-// })(6);
+
+
+(function(n) {
+  console.log('============================================')
+  const hanoi = solver(n);
+  console.log(`${n} towers`, hanoi);
+  console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
+})(6);
+
 // (function(n) {
 //   console.log('============================================')
 //   const hanoi = solver(n);
