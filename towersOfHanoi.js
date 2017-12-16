@@ -129,34 +129,40 @@ const solver = function(n) {
     start = tempEnd;
     temp = tempStart;
     end = tempTemp;
-    console.log('count', count)
 
-    if (count === 11) {
+
+    if (count === 11) { // for 7 discs
       moveDisc(temp, end)
-
     }
+
      else if (count === 3 || count % 2 === 0) {
       moveDisc(temp, end)
     } else if (count % 2 === 1) {
       moveDisc(end, temp)
     }
-    count++
     move3Discs(start, temp, end);
+
+    if (count === 14) { // moving disc 8 on 8 discs
+      moveDisc(start, temp)
+    }
+    console.log('count', count)
+    ++count
     console.log('ABC>>>', [A.stack, B.stack, C.stack]);
     console.log('ste>>>', [start.stack, temp.stack, end.stack]);
-    if (A.stack.length === 0 && B.stack.length === 0) {
-      return
-    } else {
-       sub();
-    }
+    // if (A.stack.length === 0 && B.stack.length === 0) {
+    //   return
+    // } else {
+    //
+    //    sub();
+    // }
 
 
 
     // (3) 6 towers [ [ 6 ], [ 5, 4, 3, 2, 1 ], [] ]
     // (4) 6 towers [ [ 6, undefined ], [ 5, 4 ], [ 3, 2, 1 ] ]
-    // if (count <= 12) {
-    //   sub();
-    // }
+    if (count <= 17) {
+      sub();
+    }
 
   }
   sub();
@@ -220,9 +226,15 @@ const solver = function(n) {
 //   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
 // })(6);
 
+// (function(n) {
+//   console.log('============================================')
+//   const hanoi = solver(n);
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[7,6,5,4,3,2,1]]');
+// })(7);
 (function(n) {
   console.log('============================================')
   const hanoi = solver(n);
   console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[7,6,5,4,3,2,1]]');
-})(7);
+  console.log(JSON.stringify(hanoi) === '[[],[],[8,7,6,5,4,3,2,1]]');
+})(8);
