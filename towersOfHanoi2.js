@@ -60,29 +60,6 @@ const arrangeFunc = function(cb, A, B, C) {
 const towers = function(n, stacks) {
   let [A, B, C] = stacks;
 
-  // if (n === 0) {
-  //   return stacks
-  // } else if (n === 1) {
-  //   moveDisc(A, C);
-  //   return stacks;
-  // } else if (n === 2 ) {
-  //   arrange2(A, B, C);
-  // } else if (n === 3) {
-  //   arrange3(A, B, C)
-  // } else if (n === 4) {
-  //   arrange4(A, B, C)
-  // } else if (n === 5) {
-  //   arrange5(A, B, C)
-  // } else if (n === 6) {
-  //   arrange6(A, B, C)
-  // } else if (n === 7) {
-  //   arrange7(...stacks)
-  // } else if (n === 8) {
-  //   arrange8(...stacks)
-  // } else if (n === 9) {
-  //   arrange9(...stacks)
-  // }
-
   if (n === 0) {
     return stacks;
   } if (n === 1) {
