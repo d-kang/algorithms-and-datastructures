@@ -50,37 +50,78 @@ const arrange9 = function(A, B, C) {
   arrange8(B, A, C)
 }
 
+const arrangeFunc = function(cb, A, B, C) {
+  cb(A, C, B)
+  moveDisc(A, C)
+  cb(B, A, C)
+}
+
 
 const towers = function(n, stacks) {
   let [A, B, C] = stacks;
 
+  // if (n === 0) {
+  //   return stacks
+  // } else if (n === 1) {
+  //   moveDisc(A, C);
+  //   return stacks;
+  // } else if (n === 2 ) {
+  //   arrange2(A, B, C);
+  // } else if (n === 3) {
+  //   arrange3(A, B, C)
+  // } else if (n === 4) {
+  //   arrange4(A, B, C)
+  // } else if (n === 5) {
+  //   arrange5(A, B, C)
+  // } else if (n === 6) {
+  //   arrange6(A, B, C)
+  // } else if (n === 7) {
+  //   arrange7(...stacks)
+  // } else if (n === 8) {
+  //   arrange8(...stacks)
+  // } else if (n === 9) {
+  //   arrange9(...stacks)
+  // }
+
   if (n === 0) {
-    return stacks
-  } else if (n === 1) {
+    return stacks;
+  } if (n === 1) {
     moveDisc(A, C);
     return stacks;
-  } else if (n === 2 ) {
-    arrange2(A, B, C);
-  } else if (n === 3) {
-    arrange3(A, B, C)
-  } else if (n === 4) {
-    arrange4(A, B, C)
-  } else if (n === 5) {
-    arrange5(A, B, C)
-  } else if (n === 6) {
-    arrange6(A, B, C)
-  } else if (n === 7) {
-    arrange7(...stacks)
-  } else if (n === 8) {
-    arrange8(...stacks)
-  } else if (n === 9) {
-    arrange9(...stacks)
   }
+let counter = 0;
+  const sub = function(A, B, C, counter) {
+    if (A.length === 0 && B.length === 0) {
+      return
+    }
+    if (counter % 2 === 0 && !counter) {
+      arrange2(A, B, C)
+    }
+    if (counter % 2 === 1 && !counter) {
+      arrange2(A, C, B)
+    }
+    if (counter > 1) {
+      arrange2(B, A, C)
+    }
 
 
 
 
+    if (A.length === 0 && B.length === 0) {
+      return
+    } else {
+      if (counter % 2 === 0) {
+        moveDisc(A, C)
+      } else if (counter % 2 === 1){
+        moveDisc(A, C)
+      }
 
+      sub(A, B, C, counter + 1)
+    }
+
+
+  }
+  sub(A, B, C, 0)
 
   return stacks;
 };
@@ -127,43 +168,43 @@ const towers = function(n, stacks) {
   console.log(`${n} towers`, hanoi);
   console.log(JSON.stringify(hanoi) === '[[],[],[4,3,2,1]]');
 })(4);
-(function(n) {
-  console.log('===========================')
-  console.log('===========================')
-  const stacks = [[5,4,3,2,1],[],[]]
-  const hanoi = towers(n, stacks)
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
-})(5);
-(function(n) {
-  console.log('===========================')
-  console.log('===========================')
-  const stacks = [[6,5,4,3,2,1],[],[]]
-  const hanoi = towers(n, stacks)
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
-})(6);
-(function(n) {
-  console.log('===========================')
-  console.log('===========================')
-  const stacks = [[7,6,5,4,3,2,1],[],[]]
-  const hanoi = towers(n, stacks)
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[7,6,5,4,3,2,1]]');
-})(7);
-(function(n) {
-  console.log('===========================')
-  console.log('===========================')
-  const stacks = [[8,7,6,5,4,3,2,1],[],[]]
-  const hanoi = towers(n, stacks)
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[8,7,6,5,4,3,2,1]]');
-})(8);
-(function(n) {
-  console.log('===========================')
-  console.log('===========================')
-  const stacks = [[9,8,7,6,5,4,3,2,1],[],[]]
-  const hanoi = towers(n, stacks)
-  console.log(`${n} towers`, hanoi);
-  console.log(JSON.stringify(hanoi) === '[[],[],[9,8,7,6,5,4,3,2,1]]');
-})(9);
+// (function(n) {
+//   console.log('===========================')
+//   console.log('===========================')
+//   const stacks = [[5,4,3,2,1],[],[]]
+//   const hanoi = towers(n, stacks)
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[5,4,3,2,1]]');
+// })(5);
+// (function(n) {
+//   console.log('===========================')
+//   console.log('===========================')
+//   const stacks = [[6,5,4,3,2,1],[],[]]
+//   const hanoi = towers(n, stacks)
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[6,5,4,3,2,1]]');
+// })(6);
+// (function(n) {
+//   console.log('===========================')
+//   console.log('===========================')
+//   const stacks = [[7,6,5,4,3,2,1],[],[]]
+//   const hanoi = towers(n, stacks)
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[7,6,5,4,3,2,1]]');
+// })(7);
+// (function(n) {
+//   console.log('===========================')
+//   console.log('===========================')
+//   const stacks = [[8,7,6,5,4,3,2,1],[],[]]
+//   const hanoi = towers(n, stacks)
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[8,7,6,5,4,3,2,1]]');
+// })(8);
+// (function(n) {
+//   console.log('===========================')
+//   console.log('===========================')
+//   const stacks = [[9,8,7,6,5,4,3,2,1],[],[]]
+//   const hanoi = towers(n, stacks)
+//   console.log(`${n} towers`, hanoi);
+//   console.log(JSON.stringify(hanoi) === '[[],[],[9,8,7,6,5,4,3,2,1]]');
+// })(9);
