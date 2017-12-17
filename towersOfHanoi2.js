@@ -60,6 +60,12 @@ const arrangeFunc = function(cb, A, B, C) {
 const towers = function(n, stacks) {
   let [A, B, C] = stacks;
 
+  if (n === 3) {
+    arrange2(A, C, B)
+    moveDisc(A, C)
+    arrange2(B, A, C)
+  }
+
   if (n === 0) {
     return stacks;
   } if (n === 1) {
@@ -71,13 +77,13 @@ let counter = 0;
     if (A.length === 0 && B.length === 0) {
       return
     }
-    if (counter % 2 === 0 && !counter) {
+    if (counter % 2 === 0 && !counter) { // even
       arrange2(A, B, C)
     }
-    if (counter % 2 === 1 && !counter) {
+    if (counter % 2 === 1 && !counter) { // odd
       arrange2(A, C, B)
     }
-    if (counter > 1) {
+    if (counter > 0) {
       arrange2(B, A, C)
     }
 
