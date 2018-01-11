@@ -19,7 +19,6 @@ function findDuplicatesDifferentLengths(arr1, arr2) {
     smaller = arr1;
   }
 
-  console.log('binarySearch(arr2, arr1[0])', binarySearch(arr2, arr1[0]));
   for (var i = 0; i < smaller.length; i++) {
     if (binarySearch(bigger, smaller[i]) !== -1) {
       duplicates.push(smaller[i]);
@@ -44,7 +43,7 @@ function findDuplicatesSimilarLength(arr1, arr2) {
       j = j + 1;
 	  }
   }
-  return duplicates
+  return duplicates;
 }
 
 
@@ -66,8 +65,8 @@ function binarySearch(arr, target) {
   return - 1;
 }
 
-// similar length
+// O(n + m) when n ~ m (n is approximately same length as m)
 findDuplicates([1, 2], [1, 2]);
 
-// one much larger than other
+// O(nlogm) when n >> m (n is much larger than m)
 findDuplicates([1, 25], [1, 2, 3, 5, 8, 9, 10, 15, 25, 100]);
