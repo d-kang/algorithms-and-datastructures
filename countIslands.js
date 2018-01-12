@@ -1,4 +1,4 @@
-function getIslands(matrix) {
+function countIslands(matrix) {
   // init counter
   var counter = 0;
 //   debugger;
@@ -43,4 +43,4 @@ const matrix = [
   [1, 0, 0],
   [0, 1, 1]
 ]
-console.log(getIslands(matrix));
+console.log(countIslands(matrix));
