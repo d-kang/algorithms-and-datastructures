@@ -10,25 +10,8 @@ function findDuplicates(arr1, arr2) {
   }
 }
 
-function findDuplicatesDifferentLengths(arr1, arr2) {
-  var bigger = arr1;
-  var smaller = arr2;
-  var duplicates = [];
-  if (bigger.length < smaller.length) {
-    bigger = arr2;
-    smaller = arr1;
-  }
-
-  for (var i = 0; i < smaller.length; i++) {
-    if (binarySearch(bigger, smaller[i]) !== -1) {
-      duplicates.push(smaller[i]);
-    }
-  }
-  return duplicates;
-}
-
 function findDuplicatesSimilarLength(arr1, arr2) {
-  duplicates = [];
+  var duplicates = [];
   var i = 0;
   var j = 0;
 
@@ -42,6 +25,24 @@ function findDuplicatesSimilarLength(arr1, arr2) {
 	  } else {
       j = j + 1;
 	  }
+  }
+  return duplicates;
+}
+
+
+function findDuplicatesDifferentLengths(arr1, arr2) {
+  var bigger = arr1;
+  var smaller = arr2;
+  var duplicates = [];
+  if (bigger.length < smaller.length) {
+    bigger = arr2;
+    smaller = arr1;
+  }
+
+  for (var i = 0; i < smaller.length; i++) {
+    if (binarySearch(bigger, smaller[i]) !== -1) {
+      duplicates.push(smaller[i]);
+    }
   }
   return duplicates;
 }

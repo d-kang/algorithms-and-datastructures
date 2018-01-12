@@ -1,0 +1,21 @@
+{
+  "name": "algorithms-and-datastructures",
+  "version": "1.0.0",
+  "description": "Algorithms and Data-structures",
+  "main": "binarySearch.js",
+  "scripts": {
+    "start": "node --inspect islands.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-kang/algorithms-and-datastructures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-kang/algorithms-and-datastructures/issues"
+  },
+  "homepage": "https://github.com/d-kang/algorithms-and-datastructures#readme"
+}
