@@ -46,7 +46,6 @@ const hasPathSum = (root, sum) => {
 
 
 
-
 // chosen strategy summary
 // we will traverse the tree with a recursive subroutine adding the values of each path and saving them as a paramenter in the recursive function
 // if the value is found then we return true else we return false
